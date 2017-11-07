@@ -1,0 +1,30 @@
+version: "3"
+services:
+  redis:
+    image: redis
+    networks: 
+      default:
+        ipv4_address: 172.10.0.40
+  eureka:
+    image: kayoubi/eureka
+    networks:
+      default:
+        ipv4_address: 172.10.0.55
+  hystrix:
+    image: kayoubi/hystrixdash
+    networks:
+      default:
+        ipv4_address: 172.10.0.30
+  microservice:
+    image: kayoubi/microservice
+    networks:
+      default:
+        ipv4_address: 172.10.0.70
+    links:
+      - redis
+      - eureka
+
+networks:
+  default:
+    external: 
+      name: packNet
