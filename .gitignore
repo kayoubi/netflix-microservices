@@ -1,0 +1,7 @@
+meetups/.gradle
+meetups/build
+meetups/client/build
+meetups/microservice/build
+meetups/microservice/out
+gradlew
+meetups/gradle

@@ -1,0 +1,4 @@
+rootProject.name = 'meetups'
+include 'client'
+include 'microservice'
+
