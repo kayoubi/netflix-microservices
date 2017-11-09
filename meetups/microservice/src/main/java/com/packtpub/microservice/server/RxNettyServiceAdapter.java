@@ -1,6 +1,8 @@
 package com.packtpub.microservice.server;
 
 import com.google.inject.Injector;
+import com.netflix.hystrix.contrib.rxnetty.metricsstream.HystrixMetricsStreamHandler;
+import com.packtpub.microservice.hystrix.SimpleCommand;
 import com.packtpub.microservice.rest.MeetupResource;
 import io.netty.handler.codec.http.HttpMethod;
 import io.netty.handler.codec.http.HttpResponseStatus;
@@ -24,7 +26,11 @@ public class RxNettyServiceAdapter extends JerseyBasedRouter implements RequestA
 
 
     @Override
+    @SuppressWarnings("unchecked")
     public Observable<Void> handle(HttpServerRequest request, HttpServerResponse response) {
+        if (request.getPath().startsWith("/hystrix.stream")) {
+            return new HystrixMetricsStreamHandler<>(this).handle(request, response);
+        }
         return response.writeAndFlush(routeRequest(request, response).toBlocking().first().toString());
     }
 
@@ -40,13 +46,13 @@ public class RxNettyServiceAdapter extends JerseyBasedRouter implements RequestA
             logger.info("Healthcehcker called");
             return ob;
         }
-//
-//        if (req.getUri().startsWith("/ops")) {
-//            ob = new SimpleCommand("[ \"GET /meetup\", \"PUT /meetup\"]").toObservable();
-//            logger.info("Ops called");
-//            return ob;
-//        }
-//
+
+        if (req.getUri().startsWith("/ops")) {
+            ob = new SimpleCommand("[ \"GET /meetup\", \"PUT /meetup\"]").toObservable();
+            logger.info("Ops called");
+            return ob;
+        }
+
         if (req.getUri().startsWith("/meetup") && HttpMethod.PUT.equals(req.getHttpMethod())) {
             try {
                 MeetupResource resource = injector.getInstance(MeetupResource.class);

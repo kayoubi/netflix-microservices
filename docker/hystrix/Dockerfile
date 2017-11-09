@@ -21,6 +21,10 @@ EXPOSE 8080
 # docker build -t hystrixdash . --network=host
 # docker run -d -p 8181:8080 --net packNet --ip 172.10.0.60 --name hystrixdash kayoubi/hystrixdash
 # http://localhost:8181/hystrix-dashboard/ this is mac can't use the IP address from above so I opened the port 8181 (-p 8181:8080) and used "localhost"
+# since I wanted to monitor the microservices (running locally on 9090) I had to do 
+#   sudo ifconfig lo0 alias 123.123.123.123/24
+#   then in hystrix dashboard http://123.123.123.123:9090/hystrix.stream
+# HHMMMM actuall just using my local ip address worked too!! http://192.168.3.54:9090/hystrix.stream
 
 # running hystrix producer 
 # docker run -d -p 7070:7070 --network packNet --ip 172.10.0.71 --name hystrixprod diegopacheco/hystrixprod
