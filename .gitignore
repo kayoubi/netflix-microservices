@@ -5,3 +5,4 @@ meetups/microservice/build
 meetups/microservice/out
 gradlew
 meetups/gradle
+meetups/client/out

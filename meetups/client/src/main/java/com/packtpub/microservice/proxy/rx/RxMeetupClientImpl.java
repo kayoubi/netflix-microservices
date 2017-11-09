@@ -1,6 +1,6 @@
 package com.packtpub.microservice.proxy.rx;
 
-import com.packtpub.microservice.client.MeetupServiceFeignProxy;
+import com.packtpub.microservice.client.MeetupClient;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import rx.Observable;
@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * @author khaled
  */
-public class RxMeetupClientImpl implements RxMeetupClient {
+public class RxMeetupClientImpl implements MeetupClient {
     private final MeetupServiceFeignProxy proxy;
 
     public RxMeetupClientImpl() {

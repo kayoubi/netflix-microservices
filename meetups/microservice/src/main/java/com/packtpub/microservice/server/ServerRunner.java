@@ -18,7 +18,7 @@ public class ServerRunner {
         modules.add(new GuiceBindings());
 
         if (ConfigurationManager.getConfigInstance().getBoolean("eureka_registry",true)) {
-//            modules.add(new KaryonEurekaModule());
+            modules.add(new KaryonEurekaModule());
         }
 
         new RxNettyServer().withPort(9090).withModules(modules.toArray(new Module[modules.size()])).start();
