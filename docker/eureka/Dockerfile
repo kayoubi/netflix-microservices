@@ -19,5 +19,5 @@ RUN cp /app/eureka/eureka-server/build/libs/eureka-server-*.war /usr/local/tomca
 EXPOSE 8080
 
 # docker build -t eureka . --network=host
-# run -d -p 8080:8080 --net packNet --ip 172.10.0.55 --name eureka kayoubi/eureka
+# docker run -d -p 8080:8080 --net packNet --ip 172.10.0.55 --name eureka kayoubi/eureka
 # http://localhost:8080/eureka/ this is mac can't use the IP address from above so I opened the port 8080 (-p 8080:8080) and used "localhost"

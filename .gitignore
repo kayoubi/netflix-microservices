@@ -6,3 +6,4 @@ meetups/microservice/out
 gradlew
 meetups/gradle
 meetups/client/out
+docker/microservice/build

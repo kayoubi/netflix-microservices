@@ -13,4 +13,10 @@ COPY build/ /app/microservice
 RUN ./gradlew clean build
 EXPOSE 9090
 
-CMD ["/gradlew", ":meetup-microservice:run"]
+CMD ["./gradlew", "run"]
+
+
+# docker build -t kayoubi/meetup --network=host .
+# docker run -d -p 9090:9090 --net packNet --name meetup kayoubi/meetup
+# docker run -d -p 9090:9090 --net packNet --name meetup --link redis:localhost kayoubi/meetup
+#   this didn't work!! even though we set it in GuiceBindings maybe becaues it's "localhost"?

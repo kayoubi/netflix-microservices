@@ -1,4 +1,4 @@
-package com.packtpub.microservice.com.packtpub.microservice.healthchecker;
+package com.packtpub.microservice.healthchecker;
 
 import netflix.karyon.health.HealthCheckHandler;
 

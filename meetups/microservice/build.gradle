@@ -2,12 +2,31 @@ group 'microservices'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+mainClassName = "com.packtpub.microservice.server.ServerRunner"
+applicationDefaultJvmArgs = [
+        "-Djava.net.preferIPv4Stack=true",
+        "-Djava.net.preferIPv6Addresses=false",
+        "-server",
+        "-Xmx2048m",
+        "-Xms128m"
+]
+
+configurations {
+    all*.exclude group: 'org.mortbay.jetty', module: 'servlet-api'
+}
+
 
 dependencies {
 

@@ -11,7 +11,7 @@ public class ClientRunner {
     public static void main(String[] args) {
         MeetupClient ribbon = new RibbonMeetupClientImpl();
         ribbon.create("foo", "bar");
-        ribbon.listByType("bar").forEach(System.out::println);
+        ribbon.listByType("bar").subscribe(System.out::println);
 
         MeetupClient proxy = new RxMeetupClientImpl();
         proxy.create("hello", "javabk");

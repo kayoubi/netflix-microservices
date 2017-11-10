@@ -7,22 +7,31 @@ services:
         ipv4_address: 172.10.0.40
   eureka:
     image: kayoubi/eureka
+    ports:
+      - "8080:8080"
     networks:
       default:
         ipv4_address: 172.10.0.55
   hystrix:
     image: kayoubi/hystrixdash
+    ports:
+      - "8181:8080"
     networks:
       default:
         ipv4_address: 172.10.0.30
-  microservice:
-    image: kayoubi/microservice
+  meetup:
+    image: kayoubi/meetup
+    ports:
+      - "9090:9090"
     networks:
       default:
         ipv4_address: 172.10.0.70
     links:
       - redis
       - eureka
+    environment: 
+      - redis_ip=redis
+      - eureka_registry=true
 
 networks:
   default:

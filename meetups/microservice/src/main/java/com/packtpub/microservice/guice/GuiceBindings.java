@@ -2,7 +2,7 @@ package com.packtpub.microservice.guice;
 
 import com.google.inject.AbstractModule;
 import com.netflix.config.ConfigurationManager;
-import com.packtpub.microservice.com.packtpub.microservice.healthchecker.HealthcheckResource;
+import com.packtpub.microservice.healthchecker.HealthcheckResource;
 import com.packtpub.microservice.dao.MeetupDAO;
 import com.packtpub.microservice.dao.RedisMeetupDAO;
 import com.packtpub.microservice.rest.MeetupResource;
@@ -30,7 +30,8 @@ public class GuiceBindings extends AbstractModule {
         bind(JedisPool.class).toInstance(
             new JedisPool(
                 new JedisPoolConfig(),
-                ConfigurationManager.getConfigInstance().getString("redis_ip","localhost")//172.10.0.40
+                ConfigurationManager.getConfigInstance().getString("redis_ip","localhost")
+                //this read the property of Archaius from "environment" in docker-compose
             )
         );
 
